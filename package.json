@@ -4,9 +4,9 @@
   "main": "server.js",
 "scripts": {
   "start": "node server.js",
-  "tw:build": "npx @tailwindcss/cli -i ./public/css/tailwind.css -o ./public/css/main.css --watch",
-  "build": "npx @tailwindcss/cli -i ./public/css/tailwind.css -o ./public/css/main.css"
+  "build": "npx tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --minify"
 },
+
 
   "keywords": [],
   "author": "",
