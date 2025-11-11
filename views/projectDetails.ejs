@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= project.name %> | Climate Solutions</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+
+  <body class="bg-gray-900 text-gray-200 min-h-screen">
+    <!-- NAV -->
+    <nav class="navbar bg-gray-800 text-white px-8 py-4 flex justify-between">
+      <h1 class="text-xl font-semibold">Climate Solutions</h1>
+      <div>
+        <a href="/solutions/projects" class="btn btn-sm btn-ghost">View Projects</a>
+        <a href="/about" class="btn btn-sm btn-ghost">About</a>
+      </div>
+    </nav>
+
+    <!-- HEADER -->
+    <section class="p-8 text-center bg-gray-800 rounded-lg m-6">
+      <h2 class="text-4xl font-extrabold mb-4"><%= project.name %></h2>
+      <p class="text-gray-400 text-lg">
+        Below, you will find detailed information about the project:
+        <%= project.name %>
+      </p>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="px-8 pb-16 grid md:grid-cols-2 gap-8 items-start">
+      <img
+        src="<%= project.image %>"
+        alt="<%= project.name %>"
+        class="rounded-lg shadow-xl w-full h-auto object-cover"
+      />
+      <div>
+        <p class="text-gray-300 leading-relaxed mb-4">
+          <%= project.description %>
+        </p>
+
+        <h3 class="text-lg font-bold text-green-400 mb-2">Impact:</h3>
+        <p class="text-gray-400 mb-6">
+          <%= project.impact || "Impact information coming soon." %>
+        </p>
+
+        <% if (project.link) { %>
+          <a href="<%= project.link %>" target="_blank" class="btn btn-primary">
+            Learn More
+          </a>
+        <% } %>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-gray-500 py-6 border-t border-gray-700">
+      © 2025 Climate Solutions. All Rights Reserved.
+    </footer>
+  </body>
+</html>

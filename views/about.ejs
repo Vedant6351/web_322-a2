@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Climate Solutions</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+
+  <body data-theme="dark" class="min-h-screen bg-base-300 text-gray-200 flex flex-col">
+    <!-- Navbar -->
+    <header class="navbar bg-base-200 px-8 py-4 shadow-md">
+      <div class="flex-1">
+        <a href="/" class="text-2xl font-bold text-gray-100">Climate Solutions</a>
+      </div>
+      <nav>
+        <ul class="menu menu-horizontal text-sm font-medium">
+          <li><a href="/solutions/projects">View Projects</a></li>
+          <li><a href="/about" class="active text-green-400 font-semibold">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- About Section -->
+    <main class="flex-grow flex flex-col items-center justify-center px-6 py-12">
+      <section class="max-w-5xl bg-base-200 p-10 rounded-2xl shadow-xl">
+        <h1 class="text-5xl font-extrabold text-center text-gray-100 mb-6">About Me</h1>
+
+        <p class="text-center text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+          Passionate developer & student exploring how technology and data can drive sustainable change.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div class="flex justify-center">
+            <!-- ✅ FIXED IMAGE PATH -->
+            <img
+              src="/images/seneca2.JPG"
+              alt="Your Photo"
+              class="rounded-2xl shadow-lg w-80 h-80 object-cover border border-base-300"
+            />
+          </div>
+
+          <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed">
+            <h2 class="text-3xl font-semibold text-gray-100 mb-4">Hello! I’m Vedant Pandit</h2>
+            <p>
+              I’m currently pursuing <span class="font-semibold text-gray-100">Computer Programming</span> at
+              <span class="text-green-400">Seneca Polytechnic</span> and enjoy building projects that combine clean design,
+              functionality, and real-world purpose. This website showcases climate-related solutions I’ve studied and implemented
+              as part of my coursework.
+            </p>
+
+            <p class="mt-4">
+              Outside of coding, I love photography, fitness, and exploring sustainability ideas. I believe learning through
+              practice and sharing knowledge with others helps growth — both as a developer and as a person.
+            </p>
+
+            <blockquote class="mt-6 text-gray-400 border-l-4 border-green-400 pl-4 italic">
+              “Every line of code is a step toward a smarter, sustainable future.”
+            </blockquote>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-base-200 py-6 text-center text-gray-400 text-sm border-t border-base-300">
+      <p>© 2025 Climate Solutions | Built with TailwindCSS & DaisyUI</p>
+    </footer>
+  </body>
+</html>

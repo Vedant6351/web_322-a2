@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Climate Solutions</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+
+  <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <!-- NAVBAR -->
+    <nav class="navbar bg-gray-800 text-white px-8 py-4 flex justify-between">
+      <h1 class="text-xl font-semibold">Climate Solutions</h1>
+      <div>
+        <a href="/about" class="btn btn-sm btn-ghost">About</a>
+        <a href="/solutions/projects" class="btn btn-sm btn-ghost">View Projects</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="text-center py-16 bg-gray-800 shadow-md">
+      <h1 class="text-5xl font-extrabold mb-4">Welcome to Climate Solutions</h1>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        Explore practical, data-driven approaches to reduce emissions and restore the planet.
+      </p>
+      <a href="/solutions/projects" class="btn btn-primary mt-6">Get Started</a>
+    </header>
+
+    <!-- FEATURED PROJECTS -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+      <h2 class="text-3xl font-bold text-center mb-10">Featured Projects</h2>
+
+      <% if (projects && projects.length > 0) { %>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <% projects.slice(0, 6).forEach(project => { %>
+        <div class="card bg-gray-800 shadow-xl hover:shadow-2xl transition duration-200">
+          <figure>
+            <img
+              src="<%= project.image %>"
+              alt="<%= project.name %>"
+              class="w-full h-48 object-cover rounded-t-lg"
+            />
+          </figure>
+          <div class="card-body p-5">
+            <h3 class="card-title text-lg font-bold mb-2"><%= project.name %></h3>
+            <span class="badge badge-outline mb-3"><%= project.sector %></span>
+            <p class="text-gray-300 text-sm mb-4">
+              <%= project.description.substring(0, 100) %>...
+            </p>
+            <div class="card-actions justify-end">
+              <a href="/solutions/projects/<%= project.id %>" class="btn btn-primary btn-sm">
+                More Information
+              </a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/solutions/projects" class="btn btn-success btn-wide">
+          View All Projects
+        </a>
+      </div>
+
+      <% } else { %>
+      <div class="text-center text-gray-400 mt-20">
+        <p>No projects available at the moment.</p>
+      </div>
+      <% } %>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer footer-center p-4 bg-gray-800 text-gray-400">
+      <aside>
+        <p>© 2025 Climate Solutions | Designed by Vedant Kalpit Pandit</p>
+      </aside>
+    </footer>
+  </body>
+</html>

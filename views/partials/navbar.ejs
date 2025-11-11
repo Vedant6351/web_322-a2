@@ -1,0 +1,19 @@
+<div class="navbar bg-base-100 shadow">
+  <div class="flex-1">
+    <a href="/" class="btn btn-ghost normal-case text-xl">Climate Solutions</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      <!-- View Projects link -->
+      <li>
+        <a class="<%= (page === '/solutions/projects') ? 'active' : '' %>"
+           href="/solutions/projects">View Projects</a>
+      </li>
+
+      <!-- About link -->
+      <li>
+        <a class="<%= (page === '/about') ? 'active' : '' %>" href="/about">About</a>
+      </li>
+    </ul>
+  </div>
+</div>
