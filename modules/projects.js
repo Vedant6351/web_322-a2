@@ -11,55 +11,45 @@
 ********************************************************************************/
 
 const fs = require("fs");
+const path = require("path");
 
 let projects = [];
 let sectors = [];
+
+// ✅ Build absolute file paths (works on both local + Vercel)
+const projectDataPath = path.join(__dirname, "../data/projectData.json");
+const sectorDataPath = path.join(__dirname, "../data/sectorData.json");
 
 //----------------------------------------------
 // INITIALIZE DATA
 //----------------------------------------------
 function initialize() {
   return new Promise((resolve, reject) => {
-    fs.readFile("./data/projectData.json", "utf8", (err, projectData) => {
-      if (err) {
-        reject("Unable to read projectData.json");
-        return;
-      }
+    try {
+      const projectData = fs.readFileSync(projectDataPath, "utf8");
+      const sectorData = fs.readFileSync(sectorDataPath, "utf8");
 
-      fs.readFile("./data/sectorData.json", "utf8", (err2, sectorData) => {
-        if (err2) {
-          reject("Unable to read sectorData.json");
-          return;
-        }
+      const projectList = JSON.parse(projectData);
+      const sectorList = JSON.parse(sectorData);
 
-        try {
-          const projectList = JSON.parse(projectData);
-          const sectorList = JSON.parse(sectorData);
-
-          // store originals
-          projects = projectList;
-          sectors = sectorList;
-
-          // attach readable sector names to each project
-          projects = projects.map((p) => {
-            const sec = sectors.find((s) => s.id === p.sector_id);
-            return {
-              id: p.id,
-              name: p.title,
-              description: p.summary_short,
-              sector: sec ? sec.sector_name : "Unknown",
-              image: p.feature_img_url,
-              impact: p.impact,
-              link: p.original_source_url,
-            };
-          });
-
-          resolve("✅ Data successfully loaded");
-        } catch (e) {
-          reject("Error parsing JSON files: " + e);
-        }
+      projects = projectList.map((p) => {
+        const sec = sectorList.find((s) => s.id === p.sector_id);
+        return {
+          id: p.id,
+          name: p.title,
+          description: p.summary_short,
+          sector: sec ? sec.sector_name : "Unknown",
+          image: p.feature_img_url,
+          impact: p.impact,
+          link: p.original_source_url,
+        };
       });
-    });
+
+      sectors = sectorList;
+      resolve("✅ Data successfully loaded");
+    } catch (err) {
+      reject("❌ Unable to read or parse data files: " + err);
+    }
   });
 }
 
