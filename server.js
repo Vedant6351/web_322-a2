@@ -17,30 +17,25 @@ const dataService = require("./modules/projects");
 
 const PORT = process.env.PORT || 8080;
 
-// Set EJS view engine
-app.set('views', __dirname + '/views');
+// ✅ Set EJS as view engine (single working setup)
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Serve static files from /public
+// ✅ Serve static files from /public
 app.use(express.static(path.join(__dirname, "public")));
 
-// Initialize data
-dataService.initialize()
-  .then(() => {
-    console.log("✅ Data successfully initialized");
-  })
-  .catch((err) => {
-    console.log("❌ Data initialization error:", err);
-  });
-
-
+// ✅ Initialize data before routes
+dataService
+  .initialize()
+  .then(() => console.log("✅ Data successfully initialized"))
+  .catch((err) => console.error("❌ Data initialization error:", err));
 
 // ---------------------- ROUTES ----------------------
 
-// HOME PAGE (renders projects)
+// HOME PAGE (renders all projects)
 app.get("/", (req, res) => {
-  dataService.getAllProjects()
+  dataService
+    .getAllProjects()
     .then((projects) => {
       projects.sort((a, b) => a.name.localeCompare(b.name));
       res.render("home", { projects });
@@ -58,12 +53,13 @@ app.get("/about", (req, res) => {
 
 // ALL PROJECTS
 app.get("/solutions/projects", (req, res) => {
-  dataService.getAllProjects()
+  dataService
+    .getAllProjects()
     .then((projects) => {
       projects.sort((a, b) => a.name.localeCompare(b.name));
       res.render("projects", { projects });
     })
-    .catch((err) => {
+    .catch(() => {
       res.status(500).render("404", { message: "Error loading projects" });
     });
 });
@@ -71,7 +67,8 @@ app.get("/solutions/projects", (req, res) => {
 // PROJECTS BY SECTOR
 app.get("/solutions/projects/sector/:sector", (req, res) => {
   const sector = req.params.sector;
-  dataService.getProjectsBySector(sector)
+  dataService
+    .getProjectsBySector(sector)
     .then((projects) => {
       projects.sort((a, b) => a.name.localeCompare(b.name));
       res.render("projects", { projects });
@@ -84,7 +81,8 @@ app.get("/solutions/projects/sector/:sector", (req, res) => {
 // PROJECT DETAILS
 app.get("/solutions/projects/:id", (req, res) => {
   const id = req.params.id;
-  dataService.getProjectById(id)
+  dataService
+    .getProjectById(id)
     .then((project) => {
       res.render("projectDetails", { project });
     })
@@ -98,7 +96,7 @@ app.use((req, res) => {
   res.status(404).render("404", { message: "Page not found" });
 });
 
-// START SERVER
+// ✅ START SERVER
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
