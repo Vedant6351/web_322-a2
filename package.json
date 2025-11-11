@@ -2,10 +2,12 @@
   "name": "web322-a1",
   "version": "1.0.0",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "tw:build": "npx @tailwindcss/cli -i ./public/css/tailwind.css -o ./public/css/main.css --watch"
-  },
+"scripts": {
+  "start": "node server.js",
+  "tw:build": "npx @tailwindcss/cli -i ./public/css/tailwind.css -o ./public/css/main.css --watch",
+  "build": "npx @tailwindcss/cli -i ./public/css/tailwind.css -o ./public/css/main.css"
+},
+
   "keywords": [],
   "author": "",
   "license": "ISC",

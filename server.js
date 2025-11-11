@@ -18,6 +18,7 @@ const dataService = require("./modules/projects");
 const PORT = process.env.PORT || 8080;
 
 // Set EJS view engine
+app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -34,7 +35,7 @@ dataService.initialize()
   });
 
 
-  
+
 // ---------------------- ROUTES ----------------------
 
 // HOME PAGE (renders projects)
